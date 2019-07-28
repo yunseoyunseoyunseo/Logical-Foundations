@@ -214,8 +214,8 @@ Proof. reflexivity. Qed.
 (** First, the empty map returns its default element for all keys: *)
 
 Lemma t_apply_empty:  forall (A:Type) (x: string) (v: A), { --> v } x = v.
-Proof.
-  (* FILL IN HERE *) Admitted.
+Proof. intros A x v. unfold t_empty. reflexivity. Qed. 
+
 (** [] *)
 
 (** **** Exercise: 2 stars, optional (t_update_eq)  *)
@@ -225,8 +225,11 @@ Proof.
 
 Lemma t_update_eq : forall A (m: total_map A) x v,
   (m & {x --> v}) x = v.
-Proof.
-  (* FILL IN HERE *) Admitted.
+Proof. intros A m x v. unfold t_update. 
+       unfold eqb_string. 
+        destruct (string_dec x x). 
+        - reflexivity.
+        - destruct n. reflexivity. Qed. 
 (** [] *)
 
 (** **** Exercise: 2 stars, optional (t_update_neq)  *)
